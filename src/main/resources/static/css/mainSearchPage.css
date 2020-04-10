@@ -1,0 +1,41 @@
+@charset "ISO-8859-1";
+body{
+	text-align:center;
+	font-family:Cambria;
+	font-size: 120%;
+}
+h1{
+	font-weight:bold;
+	color:white;
+}
+a{
+	color: black;
+	
+}
+.navbar{
+	background-color: #848482;
+}
+
+nav .navbar-nav li a{
+  color: white !important;
+  }
+a:hover {
+  color: #fb4f14;
+  text-decoration:none;
+}
+td{
+	font-weight: bold;
+}
+.form{
+	margin-left: 40%;
+	margin-right: 40%;
+}
+.table{
+	width: 90%;
+	margin-left:4%;
+}
+.searchHeader{
+	background-image: url("/images/student.png");
+	padding-top: 10%;
+	padding-bottom: 10%;
+}

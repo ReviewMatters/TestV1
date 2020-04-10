@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Courses</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/mainSearchPage.css}" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg ">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/student}">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/student}">Go Back</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link"  th:href="@{/logout}">Logout</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+
+	
+<div class="searchHeader">
+	</br><h1>Find Courses</h1>
+	<div class="form">
+		<form class="form-inline my-2 my-lg-0" method="get" th:action="@{/student/mainSearchPage}">
+	      <input class="form-control mr-sm-2" list="courses" type="text" id="searchField" name="searchKeyword" placeholder="Search Courses.." aria-label="Search">
+	      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+		 </form>
+	</div>
+	
+	<dataList id="courses">
+	       <option th:each="c : ${courseListFull}" th:value="${c.name}" th:text="${c.name}"></option>
+	</dataList>
+	
+</div>
+
+	</br>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th style="font-size: 120%; color:midnightblue;">Course Name</th>
+	      <th  style="font-size: 120%; color:midnightblue;">Department</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="course: ${courseList}">
+	      	<td>
+				<a th:href="@{'/student/coursePage?courseId=' + ${course.id}}" th:text="${course.name}"></a>
+			</td>
+			<td th:text="${course.department}"></td>
+	    </tr>
+	  </tbody>
+	</table>
+	</br>
+	</br>
+	<div th:replace="fragments/footer.html :: footer"></div></br>
+
+</body>
+</html>

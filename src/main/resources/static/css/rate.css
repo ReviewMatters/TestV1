@@ -1,0 +1,34 @@
+@charset "ISO-8859-1";
+.alert{
+	color:red;
+}
+body{
+	text-align:center;
+	font-family:Cambria;
+	font-size: 120%;
+	background-image: url("/images/back.png");
+	background-attachment: fixed;
+}
+h1{
+	font-weight:bold;
+}
+.navbar{
+	background-color:  #848482;
+}
+nav .navbar-nav li a{
+  color: white !important;
+  }
+.rateForm{
+	margin-left:20%;
+	margin-right:20%;
+	margin-bottom:2%;
+	text-align:left;
+	border: none;
+	padding: 2%;
+	background-image:url("/images/formBack.png");
+	border-radius: 10px;
+}
+h6{
+	font-weight:bold;
+	color: midnightblue;
+}

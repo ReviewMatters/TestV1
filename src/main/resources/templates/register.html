@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Page</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/mycss.css" th:href="@{/css/mycss.css}" />
+<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/register.css}" />
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg">
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/login">Login</a>
+	      </li>
+	    </ul>
+	  </div>
+	  </nav>
+	  </br><h1>Register</h1>
+	  
+	<div class="container">
+	<form name="form" action="#" th:action="@{/register}" method="post" onsubmit="return verify()" th:object="${student}">
+		
+		<div id="error" class="alert"></div>
+		<div id="existingerror" class="alert" th:text="${errMsg}" style="color: red;"></div>
+		<div>
+			<label for="username">FirstName</label>
+			<input type="text" 
+				id="firstname"
+				name="firstname"
+				autofocus="autofocus"
+				placeholder="Andre"
+				class="form-control"
+				th:field="*{firstName}">
+		</div>
+		<div>
+			<label for="username">LastName</label>
+			<input type="text" 
+				id="lastname"
+				name="lastname"
+				placeholder="Gonsalves"
+				class="form-control"
+				th:field="*{lastName}">
+		</div>
+		<div>
+			<label for="username">Email</label>
+			<input type="email" 
+				id="email"
+				name="email"
+				placeholder="something@something"
+				class="form-control"
+				th:field="*{email}">
+		</div>
+		<div>
+			<label for="username">Username</label>
+			<input type="text" 
+				id="username"
+				name="username"
+				placeholder="Username"
+				class="form-control"
+				th:field="*{userName}">
+		</div>
+		<div> 
+			<label for="password">Password</label>
+			<input type="password"
+			id="password"
+			name="password"
+			placeholder="Password"
+			class="form-control"
+			th:field="*{encryptedPassword}">
+		</div>
+		<br/>
+		<div> 
+			<label for="password">Confirm Password</label>
+			<input type="password"
+			id="verifyPassword"
+			name="verifyPassword"
+			placeholder="Password"
+			class="form-control">
+		</div></br>
+		<div>
+			<input type="submit"
+			name="login-submit" id="login-submit"
+			value="Add User"
+			class="btn btn-primary">
+		</div>
+		<br>
+		<p><strong>Already have an account? <a href="/login" th:href=@{/login}>Login here</strong></a></p>
+	</form>
+	</div>
+
+</body>
+</html>

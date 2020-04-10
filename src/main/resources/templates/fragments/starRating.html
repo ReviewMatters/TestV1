@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div style="display:inline;" th:fragment="stars(rating)">
+		    <span th:if="${rating >= 1}" class="fa fa-star checked"></span>
+		    <span th:unless="${rating >= 1}" class="fa fa-star"></span>
+		    <span th:if="${rating >= 2}" class="fa fa-star checked"></span>
+		    <span th:unless="${rating >= 2}" class="fa fa-star"></span>
+		    <span th:if="${rating >= 3}" class="fa fa-star checked"></span>
+		    <span th:unless="${rating >= 3}" class="fa fa-star"></span>
+		    <span th:if="${rating >= 4}" class="fa fa-star checked"></span>
+		    <span th:unless="${rating >= 4}" class="fa fa-star"></span>
+		    <span th:if="${rating >= 5}" class="fa fa-star checked"></span>
+		    <span th:unless="${rating >= 5}" class="fa fa-star"></span>
+	</div>
+
+</body>
+</html>

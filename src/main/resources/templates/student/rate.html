@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Review</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/rate.css}" />
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/student}">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{'/student/coursePage?courseId=' + ${course.id}}">Go Back</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{'/student/mainSearchPage?searchKeyword='}">View Courses</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link"  th:href="@{/logout}">Logout</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/student/mainSearchPage}">
+	      <input class="form-control mr-sm-2" type="text" list="courses" id="searchField" name="searchKeyword" placeholder="Search Courses.." aria-label="Search">
+	      <button class="btn btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
+	</nav>
+	
+	<dataList id="courses">
+	       <option th:each="c : ${courseListFull}" th:value="${c.name}" th:text="${c.name}"></option>
+	</dataList>
+	
+	<div class="rateHeader">
+	</br><h1 th:text="${course.name}" ></h1>
+	<h6>Its your time to add a review!</h6></br>
+	</div></br>
+
+	<div class="rateForm">
+	<form method="post" th:action="@{/student/addReview}">
+		<input type="hidden" name="courseId" th:value="${course.id}">
+		<div class="form-group">
+			<label>Review Title</label> <input type="text" class="form-control"
+				placeholder="Awesome Course" name="title" required>
+		</div>
+		<div class="form-group">
+			<label>Select Instructor</label> <select class="form-control"
+				name="instructorId">
+				<option th:each="instructor: ${course.instructors}"
+					th:value="${instructor.id}"
+					th:text="${instructor.firstName + ' ' + instructor.lastName}">Instructor
+					Name</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>Give a rating for the course</label> <select class="form-control"
+				name="rating">
+				<option value="1" selected>1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Elaborate on your experience with this course</label>
+			<textarea class="form-control" name="reviewBody" rows="3" required></textarea>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" name="isAnonymous" value="true" id="defaultCheck1">
+			 <label class="form-check-label" for="defaultCheck1" >Keep it Anonymous?</label>
+		</div></br>
+		<button type="submit" class="btn btn-secondary btn-block">Add Review</button>
+	</form>
+	</div>
+	<div th:replace="fragments/footer.html :: footer"></div></br>
+
+</body>
+</html>

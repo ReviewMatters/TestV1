@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+body{
+	text-align:center;
+	font-family:Cambria;
+	font-size: 120%;
+	background-image: url("/images/loginBack.png");
+	background-attachment: fixed;
+}
+.navbar{
+	background-color:  #848482;
+}
+nav .navbar-nav li a{
+  color: white !important;
+  }
+.container{
+	width: 85%;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-bottom:2px;
+	border-radius: 10px;
+}
+h1{
+	font-weight:bold;
+}

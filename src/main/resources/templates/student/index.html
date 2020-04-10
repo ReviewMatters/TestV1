@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/studentIndex.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+</style>
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg ">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item active">
+	        <a class="nav-link" th:href="@{/student}" th:text="${student.firstName +' '+ student.lastName}">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{'/student/mainSearchPage?searchKeyword='}">View Courses</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Edit Profile</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link"  th:href="@{/logout}">Logout</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/student/mainSearchPage}">
+	      <input class="form-control mr-sm-2" type="text" list="courses" id="searchField" name="searchKeyword" placeholder="Search Courses.." aria-label="Search">
+	      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
+	</nav>
+	
+	<dataList id="courses">
+	       <option th:each="c : ${courseListFull}" th:value="${c.name}" th:text="${c.name}"></option>
+	</dataList>
+	
+	<br>
+	<br>
+	<h1>Welcome <span th:text="${student.firstName +' '+student.lastName}"></span>!</h1>
+	<a href="/mainSearchPage" th:href="@{'/student/mainSearchPage?searchKeyword='}">Search Courses</a></br></br>
+
+	<h4 style="font-weight:bold;">My Reviews</h4></br>
+	
+	<div th:each="review: ${reviewList}" class="card">
+	  <div class="card-header">
+	   <a class="nav-item" th:text="${review.student.firstName + ' '+ review.student.lastName+ ','}"></a>
+	   <a class="nav-item" id="postDate">Posted On: <span th:text="${#temporals.format(review.dateReviewed, 'dd-MM-yyyy')}"></span></a>
+	  </div>
+	  <div class="card-body">
+	  <h3 class="card-title"><span th:text="${review.title}"></span></h3>
+	  	<a class="card-text"><strong>Course: </strong><span th:text="${review.course.name}"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a class="card-text"><strong>Instructor: </strong><span th:text="${review.instructor.firstName + ' ' + review.instructor.lastName}"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <a class="card-text"><strong>Rating: </strong>
+		<div th:replace="fragments/starRating.html :: stars(${review.rating})"></div></a><br>
+	    <p th:text="${review.reviewBody}" class="card-text"></p>
+	  </div></br>
+	</div>
+	
+	<div th:replace="fragments/footer.html :: footer"></div></br>
+	
+
+</body>
+</html>

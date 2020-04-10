@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Verify Account</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body style="text-align:center;">
+	<h1>Verification Page</h1><br><hr><br>
+	<div  th:if="${isVerified}">
+		<h4> Hi [[${student.firstName}]], Your account is successfully verified</h4>
+		<br>
+		<p>Got Verified? Login Here - <a href="/login" th:href="@{/login}" class="btn btn-primary">Login</a></p>
+	</div>
+	<div th:unless="${isVerified}">
+		<h4>No verification info available.	</h4>
+		<br>
+			<p>Wanna use CourseAid, Register Here <a href="/register" th:href="@{/register}" class="btn btn-primary">Register</a></p>
+	</div>
+	
+	
+	 
+</body>
+</html>

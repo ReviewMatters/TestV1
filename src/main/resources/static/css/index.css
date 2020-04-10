@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+#mainHeading{
+	font-size: 700%;
+	font-weight: bold;
+	 background-image: url("/images/formBack.png");
+}
+body{
+	text-align:center;
+	font-family:Cambria;
+	font-size: 120%;
+	background-attachment: fixed;
+	 color: maroon;
+	 background-image: url("/images/class.png");
+}
+.navbar{
+	background-color:  #848482;
+}
+nav .navbar-nav li a{
+  color: white !important;
+  }
+  
+
